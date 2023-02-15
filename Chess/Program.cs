@@ -15,21 +15,44 @@ namespace Chess
 
                 while (!game.Finished)
                 {
-                    Console.Clear();
-                    View.PrintBoard(game.Board);
+                    try
+                    {
+                        Console.Clear();
+                        View.PrintBoard(game.Board);
+                        Console.WriteLine("\nRound: " + game.Round);
+                        Console.WriteLine("Current player: " + game.PlayerColor);
 
-                    Console.Write("\nOrigin: ");
-                    Position origin = View.ReadPosition().ToPosition();
+                        Console.Write("\nOrigin: ");
+                        Position origin = View.ReadPosition().ToPosition();
+                        game.ValidateOriginPosition(origin);
 
-                    bool[,] possibleMoves = game.Board.GetPiece(origin).PossibleMoves();
+                        bool[,] possibleMoves = game.Board.GetPiece(origin).PossibleMoves();
 
-                    Console.Clear();
-                    View.PrintBoard(game.Board, possibleMoves);
+                        Console.Clear();
+                        View.PrintBoard(game.Board, possibleMoves);
 
-                    Console.Write("\nDestiny: ");
-                    Position destiny = View.ReadPosition().ToPosition();
+                        Console.Write("\nDestiny: ");
+                        Position destiny = View.ReadPosition().ToPosition();
+                        game.ValidateDestinyPosition(origin, destiny);
 
-                    game.MovePiece(origin, destiny);
+                        game.StartRound(origin, destiny);
+                    }
+                    catch (BoardException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Type the column letter first and then the line number ! Example: 'a1'");
+                        Console.ReadLine();
+                    }
+                    catch(IndexOutOfRangeException e)
+                    {
+                        Console.WriteLine("Enter a possible value !");
+                        Console.ReadLine();
+                    }
+
                 }
 
                 View.PrintBoard(game.Board);
@@ -38,7 +61,7 @@ namespace Chess
             {
                 Console.WriteLine(e.Message);
             }
-
+            
             Console.ReadLine();
 
         }

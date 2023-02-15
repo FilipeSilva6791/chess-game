@@ -14,42 +14,42 @@ namespace Chess
 
             //up
             pos.DefineValues(Position.Line - 1, Position.Column);
-            if (Board.IsValidPosition(pos) && CanMoveTo(pos))
+            if (Board.IsValidPosition(pos) && CanMove(pos))
                 mat[pos.Line, pos.Column] = true;
 
             //up-right
             pos.DefineValues(Position.Line - 1, Position.Column + 1);
-            if (Board.IsValidPosition(pos) && CanMoveTo(pos))
+            if (Board.IsValidPosition(pos) && CanMove(pos))
                 mat[pos.Line, pos.Column] = true;
 
             //right
             pos.DefineValues(Position.Line, Position.Column + 1);
-            if (Board.IsValidPosition(pos) && CanMoveTo(pos))
+            if (Board.IsValidPosition(pos) && CanMove(pos))
                 mat[pos.Line, pos.Column] = true;
 
             //down-right
             pos.DefineValues(Position.Line + 1, Position.Column + 1);
-            if (Board.IsValidPosition(pos) && CanMoveTo(pos))
+            if (Board.IsValidPosition(pos) && CanMove(pos))
                 mat[pos.Line, pos.Column] = true;
 
             //down
             pos.DefineValues(Position.Line + 1, Position.Column);
-            if (Board.IsValidPosition(pos) && CanMoveTo(pos))
+            if (Board.IsValidPosition(pos) && CanMove(pos))
                 mat[pos.Line, pos.Column] = true;
 
             //down-left
             pos.DefineValues(Position.Line + 1, Position.Column - 1);
-            if (Board.IsValidPosition(pos) && CanMoveTo(pos))
+            if (Board.IsValidPosition(pos) && CanMove(pos))
                 mat[pos.Line, pos.Column] = true;
 
             //left
             pos.DefineValues(Position.Line, Position.Column - 1);
-            if (Board.IsValidPosition(pos) && CanMoveTo(pos))
+            if (Board.IsValidPosition(pos) && CanMove(pos))
                 mat[pos.Line, pos.Column] = true;
 
             //up-left
             pos.DefineValues(Position.Line - 1, Position.Column - 1);
-            if (Board.IsValidPosition(pos) && CanMoveTo(pos))
+            if (Board.IsValidPosition(pos) && CanMove(pos))
                 mat[pos.Line, pos.Column] = true;
 
             return mat;

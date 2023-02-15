@@ -5,10 +5,10 @@ namespace Chess
 {
     class RunGame
     {
-        public Board Board { get; }
-        private int Round;
-        private Color PlayerColor;
-        public bool Finished { get; }
+        public Board Board { get; private set; }
+        public int Round { get; private set; }
+        public Color PlayerColor { get; private set; }
+        public bool Finished { get; private set; }
 
         public RunGame()
         {
@@ -19,12 +19,45 @@ namespace Chess
             InsertPieces();
         }
 
-        public void MovePiece(Position origin, Position destiny)
+        private void MovePiece(Position origin, Position destiny)
         {
             Piece p = Board.RemovePiece(origin);
             p.AddMoves();
             Piece capturedPiece = Board.RemovePiece(destiny);
             Board.InsertPiece(p, destiny);
+        }
+
+        public void StartRound(Position origin, Position destiny)
+        {
+            MovePiece(origin, destiny);
+            Round++;
+            ChangePlayer();
+        }
+
+        public void ValidateOriginPosition(Position pos)
+        {
+            if (Board.GetPiece(pos) == null)
+                throw new BoardException("There is no piece in this position!");
+
+            if(PlayerColor != Board.GetPiece(pos).Color)
+                throw new BoardException("This piece is not yours!");
+
+            if (!Board.GetPiece(pos).ExistPossibleMoves())
+                throw new BoardException("There are no moves possible for this piece!");
+        }
+
+        public void ValidateDestinyPosition(Position origin, Position destiny)
+        {
+            if(!Board.GetPiece(origin).CanMoveTo(destiny))
+                throw new BoardException("Invalid destiny position!");
+        }
+
+        private void ChangePlayer()
+        {
+            if (PlayerColor == Color.White)
+                PlayerColor = Color.Black;
+            else
+                PlayerColor = Color.White;
         }
 
         private void InsertPieces()

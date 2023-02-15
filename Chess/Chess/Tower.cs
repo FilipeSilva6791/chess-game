@@ -14,7 +14,7 @@ namespace Chess
 
             //up
             pos.DefineValues(Position.Line - 1, Position.Column);
-            while(Board.IsValidPosition(pos) && CanMoveTo(pos))
+            while(Board.IsValidPosition(pos) && CanMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
 
@@ -26,7 +26,7 @@ namespace Chess
 
             //down
             pos.DefineValues(Position.Line + 1, Position.Column);
-            while (Board.IsValidPosition(pos) && CanMoveTo(pos))
+            while (Board.IsValidPosition(pos) && CanMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
 
@@ -38,7 +38,7 @@ namespace Chess
 
             //right
             pos.DefineValues(Position.Line, Position.Column + 1);
-            while (Board.IsValidPosition(pos) && CanMoveTo(pos))
+            while (Board.IsValidPosition(pos) && CanMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
 
@@ -50,7 +50,7 @@ namespace Chess
 
             //left
             pos.DefineValues(Position.Line, Position.Column - 1);
-            while (Board.IsValidPosition(pos) && CanMoveTo(pos))
+            while (Board.IsValidPosition(pos) && CanMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
 

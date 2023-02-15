@@ -14,17 +14,38 @@
             Board = board;
         }
 
+        public abstract bool[,] PossibleMoves();
+
         public void AddMoves()
         {
             Moves++;
         }
 
-        public abstract bool[,] PossibleMoves();
+        public bool ExistPossibleMoves()
+        {
+            bool[,] mat = PossibleMoves();
 
-        protected bool CanMoveTo(Position pos)
+            for(int i = 0; i < Board.Lines; i++)
+            {
+                for (int j = 0; j < Board.Columns; j++)
+                {
+                    if (mat[i, j])
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        protected bool CanMove(Position pos)
         {
             Piece p = Board.GetPiece(pos);
             return p == null || p.Color != Color;
         }
+
+        public bool CanMoveTo(Position pos)
+        {
+            return PossibleMoves()[pos.Line, pos.Column];
+        }
+
     }
 }
