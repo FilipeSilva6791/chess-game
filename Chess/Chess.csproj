@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Chess\ChessPosition.cs" />
     <Compile Include="Chess\King.cs" />
+    <Compile Include="Chess\RunGame.cs" />
     <Compile Include="Chess\Tower.cs" />
     <Compile Include="GameBoard\Board.cs" />
     <Compile Include="GameBoard\BoardException.cs" />

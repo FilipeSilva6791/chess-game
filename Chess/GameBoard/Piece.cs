@@ -13,5 +13,10 @@
             Color = color;
             Board = board;
         }
+
+        public void AddMoves()
+        {
+            Moves++;
+        }
     }
 }

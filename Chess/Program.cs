@@ -8,15 +8,31 @@ namespace Chess
     {
         static void Main(string[] args)
         {
-            ChessPosition pos = new ChessPosition('c', 7);
-            Console.WriteLine(pos.ToPosition());
 
-            Board board = new Board();
+            try
+            {
+                RunGame game = new RunGame();
 
-            board.InsertPiece(new King(board, Color.Black), new Position(0, 0));
-            board.InsertPiece(new King(board, Color.White), new Position(7, 0));
+                while (!game.Finished)
+                {
+                    Console.Clear();
+                    View.PrintBoard(game.Board);
 
-            View.PrintBoard(board);           
+                    Console.Write("\nOrigin: ");
+                    Position origin = View.ReadPosition().ToPosition();
+
+                    Console.Write("Destiny: ");
+                    Position destiny = View.ReadPosition().ToPosition();
+
+                    game.MovePiece(origin, destiny);
+                }
+
+                View.PrintBoard(game.Board);
+            }
+            catch(BoardException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             Console.ReadLine();
 
