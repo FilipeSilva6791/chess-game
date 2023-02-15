@@ -21,6 +21,11 @@
             Moves++;
         }
 
+        public void RemoveMoves()
+        {
+            Moves--;
+        }
+
         public bool ExistPossibleMoves()
         {
             bool[,] mat = PossibleMoves();

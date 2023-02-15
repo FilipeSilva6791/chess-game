@@ -1,10 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using GameBoard;
 
 namespace Chess
 {
     class View
     {
+        public static void PrintGame(RunGame game)
+        {
+            PrintBoard(game.Board);
+            PrintCapturedPieces(game);
+            Console.WriteLine("\n\nRound: " + game.Round);
+            Console.WriteLine("Current player: " + game.PlayerColor);
+
+            if (game.Check)
+                Console.WriteLine("UUhh, CHECK!");
+        }
         public static void PrintBoard(Board board)
         {
             for(int i = 0; i < board.Lines; i++)
@@ -20,6 +31,31 @@ namespace Chess
             }
 
             Console.WriteLine("  a b c d e f g h");
+        }
+
+        public static void PrintCapturedPieces(RunGame game)
+        {
+            Console.WriteLine("\nCaptured pieces:");
+            Console.Write("Whites: ");
+            PrintSet(game.CapturedPieces(Color.White));
+
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("\nBlacks: ");
+            PrintSet(game.CapturedPieces(Color.Black));
+            Console.ForegroundColor = aux;
+        }
+
+        public static void PrintSet(HashSet<Piece> set)
+        {
+            Console.Write("[");
+
+            foreach(Piece x in set)
+            {
+                Console.Write(x + " ");
+            }
+
+            Console.Write("]");
         }
 
         public static void PrintBoard(Board board, bool[,] possibleMoves)
@@ -69,7 +105,7 @@ namespace Chess
                 else
                 {
                     ConsoleColor aux = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write(piece + " ");
                     Console.ForegroundColor = aux;
                 }

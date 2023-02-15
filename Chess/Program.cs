@@ -18,9 +18,7 @@ namespace Chess
                     try
                     {
                         Console.Clear();
-                        View.PrintBoard(game.Board);
-                        Console.WriteLine("\nRound: " + game.Round);
-                        Console.WriteLine("Current player: " + game.PlayerColor);
+                        View.PrintGame(game);
 
                         Console.Write("\nOrigin: ");
                         Position origin = View.ReadPosition().ToPosition();
@@ -42,12 +40,12 @@ namespace Chess
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
                     }
-                    catch (FormatException e)
+                    catch (FormatException)
                     {
                         Console.WriteLine("Type the column letter first and then the line number ! Example: 'a1'");
                         Console.ReadLine();
                     }
-                    catch(IndexOutOfRangeException e)
+                    catch(IndexOutOfRangeException)
                     {
                         Console.WriteLine("Enter a possible value !");
                         Console.ReadLine();
