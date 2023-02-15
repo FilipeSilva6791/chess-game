@@ -21,7 +21,12 @@ namespace Chess
                     Console.Write("\nOrigin: ");
                     Position origin = View.ReadPosition().ToPosition();
 
-                    Console.Write("Destiny: ");
+                    bool[,] possibleMoves = game.Board.GetPiece(origin).PossibleMoves();
+
+                    Console.Clear();
+                    View.PrintBoard(game.Board, possibleMoves);
+
+                    Console.Write("\nDestiny: ");
                     Position destiny = View.ReadPosition().ToPosition();
 
                     game.MovePiece(origin, destiny);

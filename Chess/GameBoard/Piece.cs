@@ -18,5 +18,13 @@
         {
             Moves++;
         }
+
+        public abstract bool[,] PossibleMoves();
+
+        protected bool CanMoveTo(Position pos)
+        {
+            Piece p = Board.GetPiece(pos);
+            return p == null || p.Color != Color;
+        }
     }
 }
