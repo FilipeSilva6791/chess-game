@@ -46,6 +46,7 @@
     <Compile Include="Chess\King.cs" />
     <Compile Include="Chess\Tower.cs" />
     <Compile Include="GameBoard\Board.cs" />
+    <Compile Include="GameBoard\BoardException.cs" />
     <Compile Include="GameBoard\Color.cs" />
     <Compile Include="GameBoard\Piece.cs" />
     <Compile Include="GameBoard\Position.cs" />

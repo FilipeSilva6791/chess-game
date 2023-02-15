@@ -17,10 +17,38 @@
             return _pieces[line, column];
         }
 
-        public void InsertPiece(Piece piece, Position position)
+        public Piece GetPiece (Position pos)
         {
-            _pieces[position.Line, position.Column] = piece;
-            piece.Position = position;
+            return _pieces[pos.Line, pos.Column];
+        }
+
+        public bool ExistPieceInPosition(Position pos)
+        {
+            ValidatePosition(pos);
+            return GetPiece(pos) != null;
+        }
+
+        public void InsertPiece(Piece piece, Position pos)
+        {
+            if (ExistPieceInPosition(pos))
+                throw new BoardException("There is already a piece in this position!");
+
+            _pieces[pos.Line, pos.Column] = piece;
+            piece.Position = pos;
+        }
+
+        public bool IsValidPosition(Position pos)
+        {
+            if (pos.Line < 0 || pos.Line >= Lines || pos.Column < 0 || pos.Column >= Columns)
+                return false;
+
+            return true;
+        }
+
+        public void ValidatePosition (Position pos)
+        {
+            if (!IsValidPosition(pos))
+                throw new BoardException("Invalid position !");
         }
     }
 }
