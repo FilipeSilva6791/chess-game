@@ -11,10 +11,19 @@ namespace Chess
             PrintBoard(game.Board);
             PrintCapturedPieces(game);
             Console.WriteLine("\n\nRound: " + game.Round);
-            Console.WriteLine("Current player: " + game.PlayerColor);
 
-            if (game.Check)
-                Console.WriteLine("UUhh, CHECK!");
+            if (!game.Finished)
+            {
+                Console.WriteLine("Current player: " + game.PlayerColor);
+
+                if (game.Check)
+                    Console.WriteLine("UUhh, CHECK!");
+            }
+            else
+            {
+                Console.WriteLine("CHECKMATE !! ");
+                Console.WriteLine("Winner: " + game.PlayerColor);
+            }          
         }
         public static void PrintBoard(Board board)
         {

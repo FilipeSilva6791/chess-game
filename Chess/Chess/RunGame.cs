@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using GameBoard;
-using System.Linq;
-using System.Diagnostics;
 
 namespace Chess
 {
@@ -67,8 +65,13 @@ namespace Chess
             else
                 Check = false;
 
-            Round++;
-            ChangePlayer();
+            if (IsInCheckmate(AdversaryColor(PlayerColor)))
+                Finished = true;
+            else
+            {
+                Round++;
+                ChangePlayer();
+            }
         }
 
         public void ValidateOriginPosition(Position pos)
@@ -143,8 +146,7 @@ namespace Chess
         public bool IsInCheck(Color color)
         {
             Piece king = King(color);
-            //HashSet<Piece> aux = PiecesInGame(AdversaryColor(color));
-
+            
             foreach (Piece x in PiecesInGame(AdversaryColor(color)))
             {
                 bool[,] mat = x.PossibleMoves();
@@ -156,6 +158,37 @@ namespace Chess
             return false;
         }
 
+        public bool IsInCheckmate(Color color)
+        {
+            if(!IsInCheck(color)) 
+                return false;
+
+            foreach(Piece x in PiecesInGame(color))
+            {
+                bool[,] mat = x.PossibleMoves();
+
+                for(int i = 0; i < Board.Lines; i++)
+                {
+                    for(int j = 0; j < Board.Columns; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Position origin = x.Position;
+                            Position destiny = new Position(i, j);
+                            Piece capturedPiece = MovePiece(origin, destiny);
+                            bool testCheck = IsInCheck(color);
+                            UndoMove(origin, destiny, capturedPiece);
+
+                            if (!testCheck) 
+                                return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
         public void InsertNewPiece(char column, int line, Piece piece)
         {
             Board.InsertPiece(piece, new ChessPosition(column, line).ToPosition());
@@ -164,19 +197,19 @@ namespace Chess
 
         private void InsertPieces()
         {
+            //InsertNewPiece('c', 1, new Tower(Board, Color.White));
+            //InsertNewPiece('e', 1, new Tower(Board, Color.White));
+            //InsertNewPiece('c', 2, new Tower(Board, Color.White));
             InsertNewPiece('c', 1, new Tower(Board, Color.White));
-            InsertNewPiece('e', 1, new Tower(Board, Color.White));
-            InsertNewPiece('c', 2, new Tower(Board, Color.White));
-            InsertNewPiece('d', 2, new Tower(Board, Color.White));
-            InsertNewPiece('e', 2, new Tower(Board, Color.White));
+            InsertNewPiece('h', 7, new Tower(Board, Color.White));
             InsertNewPiece('d', 1, new King(Board, Color.White));
 
-            InsertNewPiece('c', 8, new Tower(Board, Color.Black));
-            InsertNewPiece('e', 8, new Tower(Board, Color.Black));
-            InsertNewPiece('c', 7, new Tower(Board, Color.Black));
-            InsertNewPiece('d', 7, new Tower(Board, Color.Black));
-            InsertNewPiece('e', 7, new Tower(Board, Color.Black));
-            InsertNewPiece('d', 8, new King(Board, Color.Black));
+            //InsertNewPiece('c', 8, new Tower(Board, Color.Black));
+            //InsertNewPiece('e', 8, new Tower(Board, Color.Black));
+            //InsertNewPiece('c', 7, new Tower(Board, Color.Black));
+            //InsertNewPiece('d', 7, new Tower(Board, Color.Black));
+            InsertNewPiece('b', 8, new Tower(Board, Color.Black));
+            InsertNewPiece('a', 8, new King(Board, Color.Black));
         }
 
     }

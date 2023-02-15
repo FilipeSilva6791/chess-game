@@ -53,7 +53,8 @@ namespace Chess
 
                 }
 
-                View.PrintBoard(game.Board);
+                Console.Clear();
+                View.PrintGame(game);
             }
             catch(BoardException e)
             {
