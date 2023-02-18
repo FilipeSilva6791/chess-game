@@ -47,7 +47,7 @@
             return p == null || p.Color != Color;
         }
 
-        public bool CanMoveTo(Position pos)
+        public bool PossibleMove(Position pos)
         {
             return PossibleMoves()[pos.Line, pos.Column];
         }

@@ -44,8 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chess\Bishop.cs" />
     <Compile Include="Chess\ChessPosition.cs" />
     <Compile Include="Chess\King.cs" />
+    <Compile Include="Chess\Horse.cs" />
+    <Compile Include="Chess\Pawn.cs" />
+    <Compile Include="Chess\Queen.cs" />
     <Compile Include="Chess\RunGame.cs" />
     <Compile Include="Chess\Tower.cs" />
     <Compile Include="GameBoard\Board.cs" />

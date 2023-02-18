@@ -39,7 +39,7 @@ namespace Chess
                 Console.WriteLine();
             }
 
-            Console.WriteLine("  a b c d e f g h");
+            Console.WriteLine("   a  b  c  d  e  f  g  h");
         }
 
         public static void PrintCapturedPieces(RunGame game)
@@ -90,7 +90,7 @@ namespace Chess
                 Console.WriteLine();
             }
 
-            Console.WriteLine("  a b c d e f g h");
+            Console.WriteLine("   a  b  c  d  e  f  g  h");
             Console.BackgroundColor = originalBackground;
         }
 
@@ -106,17 +106,19 @@ namespace Chess
         private static void PrintPiece (Piece piece)
         {
             if (piece == null)
-                Console.Write("- ");
+                Console.Write("[ ]");
             else
             {
                 if (piece.Color == Color.White)
-                    Console.Write(piece + " ");
+                    Console.Write("[" + piece + "]");
                 else
                 {
+                    Console.Write("[");
                     ConsoleColor aux = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write(piece + " ");
+                    Console.Write(piece);
                     Console.ForegroundColor = aux;
+                    Console.Write("]");
                 }
             }
         }
