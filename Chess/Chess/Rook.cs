@@ -3,9 +3,9 @@ using GameBoard;
 
 namespace Chess
 {
-    class Tower : Piece
+    class Rook : Piece
     {
-        public Tower(Board board, Color color) : base(color, board) { }
+        public Rook(Board board, Color color) : base(color, board) { }
 
         public override bool[,] PossibleMoves()
         {
@@ -63,6 +63,6 @@ namespace Chess
             return mat;
         }
 
-        public override string ToString() => "T";
+        public override string ToString() => "R";
     }
 }

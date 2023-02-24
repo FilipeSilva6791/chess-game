@@ -3,9 +3,9 @@ using GameBoard;
 
 namespace Chess
 {
-    class Horse : Piece
+    class Knight : Piece
     {
-        public Horse(Board board, Color color) : base(color, board){}
+        public Knight(Board board, Color color) : base(color, board){}
 
         public override bool[,] PossibleMoves()
         {

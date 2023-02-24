@@ -47,11 +47,11 @@
     <Compile Include="Chess\Bishop.cs" />
     <Compile Include="Chess\ChessPosition.cs" />
     <Compile Include="Chess\King.cs" />
-    <Compile Include="Chess\Horse.cs" />
+    <Compile Include="Chess\Knight.cs" />
     <Compile Include="Chess\Pawn.cs" />
     <Compile Include="Chess\Queen.cs" />
     <Compile Include="Chess\RunGame.cs" />
-    <Compile Include="Chess\Tower.cs" />
+    <Compile Include="Chess\Rook.cs" />
     <Compile Include="GameBoard\Board.cs" />
     <Compile Include="GameBoard\BoardException.cs" />
     <Compile Include="GameBoard\Color.cs" />
